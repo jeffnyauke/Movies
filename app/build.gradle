@@ -1,0 +1,117 @@
+apply plugin: "com.android.application"
+
+apply plugin: "kotlin-android"
+
+apply plugin: "kotlin-kapt"
+
+apply plugin: "kotlin-android-extensions"
+
+apply plugin: "androidx.navigation.safeargs"
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "io.piestack.movies"
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "TMDB_API", "\"https://api.themoviedb.org/3/\""
+        buildConfigField "String", "TMDB_POSTER_API", "\"http://image.tmdb.org/t/p/w185/\""
+        buildConfigField "String", "TMDB_API_KEY", "\"2719126fbe5a3a059160a0f0a8a83892\""
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+    androidExtensions {
+        experimental = true
+    }
+}
+
+dependencies {
+    // kotlin
+    implementation(Dep.kotlin)
+
+    // coroutine
+    implementation(Dep.coroutineCore)
+    implementation(Dep.coroutineAndroid)
+    testImplementation(Dep.coroutineTest)
+
+    // androidx
+    implementation(Dep.appCompat)
+    implementation(Dep.material)
+    implementation(Dep.constraintLayout)
+    implementation(Dep.coreKtx)
+    implementation(Dep.fragmentKtx)
+    implementation(Dep.collectionKtx)
+
+    // android architecture component
+    implementation(Dep.lifecycleRuntime)
+    implementation(Dep.lifecycleExtensions)
+    implementation(Dep.lifecycleReactivestreams)
+    kapt(Dep.lifecycleCompiler)
+    implementation(Dep.viewModel)
+    implementation(Dep.viewmodelKtx)
+    implementation(Dep.livedataKtx)
+
+    // navigation
+    implementation(Dep.navFragment)
+    implementation(Dep.navUi)
+    implementation(Dep.navCommonKtx)
+    implementation(Dep.navRuntimeKtx)
+    implementation(Dep.navFragmentKtx)
+    implementation(Dep.navUiKtx)
+    testImplementation(Dep.navTestKtx)
+
+    // dependency injection
+    implementation(Dep.dagger)
+    kapt(Dep.daggerCompiler)
+    implementation(Dep.daggerAndroid)
+    implementation(Dep.daggerAndroidSupport)
+    kapt(Dep.daggerAndroidProcessor)
+
+    // network
+    implementation(Dep.retrofit)
+    implementation(Dep.retrofitConverter)
+    implementation(Dep.retrofitAdapter)
+    debugImplementation(Dep.loggingInterceptor)
+    testImplementation(Dep.mockWebServer)
+
+    // database
+    implementation(Dep.room)
+    kapt(Dep.roomCompiler)
+    implementation(Dep.roomCoroutine)
+    testImplementation(Dep.roomTest)
+
+    // recycler view
+    implementation(Dep.groupie)
+    implementation(Dep.groupieDatabinding)
+
+    // date
+    implementation(Dep.threetenabp)
+
+    // ui
+    implementation(Dep.circleImage)
+
+    // image
+    implementation(Dep.glide)
+    annotationProcessor(Dep.glideCompiler)
+
+    // test
+    testImplementation(Dep.junit)
+    testImplementation(Dep.assertj)
+    testImplementation(Dep.testCore)
+    testImplementation(Dep.mockk) {
+        exclude group: "org.jetbrains.kotlin",  module: "kotlin-reflect"
+    }
+    testImplementation(Dep.orgThreetenbp)
+    testImplementation(Dep.kotlinReflect)
+}
