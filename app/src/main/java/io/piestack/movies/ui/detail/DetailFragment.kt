@@ -42,7 +42,9 @@ class DetailFragment : DaggerFragment() {
             togglePlay()
         }
 
-        Glide.with(requireContext()).load(BuildConfig.TMDB_POSTER_API + movie.posterPath!!).into(v.imageMovie)
+        movie.posterPath?.let {
+            Glide.with(requireContext()).load(BuildConfig.TMDB_POSTER_API + it).into(v.imageMovie)
+        }
         return v
     }
 

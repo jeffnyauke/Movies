@@ -6,7 +6,7 @@ import io.piestack.movies.model.Movie
 @Dao
 abstract class MovieDao {
 
-    @Query("SELECT * FROM movie")
+    @Query("SELECT * FROM movie ORDER BY popularity DESC")
     abstract fun getAll(): List<Movie>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

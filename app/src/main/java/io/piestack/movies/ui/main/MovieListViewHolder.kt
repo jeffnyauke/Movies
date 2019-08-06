@@ -15,8 +15,10 @@ class MovieListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         itemView.textMovieRating.text = "Rating: ${movieModel.voteAverage}"
         itemView.textReleaseDate.text = "Release Date: ${movieModel.releaseDate}"
 
+        movieModel.posterPath?.let {
+            Glide.with(itemView.context).load(BuildConfig.TMDB_POSTER_API + it).into(itemView.imageMovie)
+        }
 
-        Glide.with(itemView.context).load(BuildConfig.TMDB_POSTER_API + movieModel.posterPath!!).into(itemView.imageMovie)
     }
 
 }
